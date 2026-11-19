@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deckforge-print-toolkit"
+version = "0.4.0"
+description = "Local-first tarot production with optional vision suggestions, ICC colour export, supplier template overlays and Windows packaging."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "DeckForge contributors" }]
+dependencies = [
+  "Pillow>=10.0,<13",
+  "qrcode>=7.4,<9",
+  "reportlab>=4.0,<5",
+  "pypdf>=5.0,<7"
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "pytest-cov>=5,<8"]
+
+[project.scripts]
+deckforge = "deckforge.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["deckforge*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
