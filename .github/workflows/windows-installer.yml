@@ -1,0 +1,38 @@
+name: DeckForge V4 Windows installer
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+permissions:
+  contents: read
+jobs:
+  installer:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install Inno Setup
+        shell: powershell
+        run: choco install innosetup --no-progress --yes
+      - name: Run test suite, freeze app and compile installer
+        shell: powershell
+        run: .\installer\build_windows.ps1
+      - name: Upload installer and checksum
+        shell: powershell
+        run: |
+          Get-FileHash .\release\DeckForgeStudio-V4-Windows-Setup.exe -Algorithm SHA256 |
+            ForEach-Object { "$($_.Hash)  DeckForgeStudio-V4-Windows-Setup.exe" } |
+            Out-File .\release\SHA256SUMS.txt -Encoding utf8
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DeckForgeStudio-V4-Windows-Installer-UNSIGNED
+          path: |
+            release/DeckForgeStudio-V4-Windows-Setup.exe
+            release/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 30

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "illustrative_data_only": true,
+  "currency": "EUR",
+  "retail_price": 34.0,
+  "shipping_charged_to_customer": 4.9,
+  "outbound_shipping_per_order": 5.2,
+  "packaging_cost_per_deck": 1.3,
+  "marketplace_fee_fraction": 0.08,
+  "marketplace_flat_fee_per_order": 0.25,
+  "payment_fee_fraction": 0.02,
+  "payment_flat_fee_per_order": 0.35,
+  "allowance_per_order": 0,
+  "quotes": [
+    {
+      "supplier": "ILLUSTRATIVE quote A",
+      "quantity": 20,
+      "unit_print_cost": 15.0,
+      "setup_cost": 0,
+      "inbound_shipping_total": 16.0
+    },
+    {
+      "supplier": "ILLUSTRATIVE quote B",
+      "quantity": 50,
+      "unit_print_cost": 12.5,
+      "setup_cost": 20,
+      "inbound_shipping_total": 30.0
+    },
+    {
+      "supplier": "ILLUSTRATIVE quote C",
+      "quantity": 100,
+      "unit_print_cost": 10.0,
+      "setup_cost": 40,
+      "inbound_shipping_total": 48.0
+    }
+  ],
+  "notes": "Fictional figures for testing. Replace with actual quotations and fee terms; not financial advice."
+}
