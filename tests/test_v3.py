@@ -187,7 +187,7 @@ def test_package_includes_review_gate_cost_outputs_and_checksums(tmp_path):
 def test_html_review_screen_and_malicious_title_are_escaped(tmp_path):
     p=tmp_path/'test';write_config(p,default_config('O <script>alert(6)</script>'))
     run_build(p,p/'build',skip_safety=True)
-    html=(p/'build'/'qa_dashboard.html').read_text()
+    html=(p/'build'/'qa_dashboard.html').read_text(encoding="utf-8")
     assert 'Review &amp; sign off' in html
     assert 'Download review JSON' in html
     assert 'Batch cost scenarios' in html

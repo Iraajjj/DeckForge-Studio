@@ -100,7 +100,7 @@ def test_html_dashboard_safe_and_offline(tmp_path):
     project=tmp_path/'project';cfg=default_config('Sample <script>alert(1)</script>')
     write_config(project,cfg)
     report,_,_=run_build(project,project/'build',skip_safety=True)
-    html=(project/'build'/'qa_dashboard.html').read_text()
+    html=(project/'build'/'qa_dashboard.html').read_text(encoding="utf-8")
     assert 'data:image' not in html or 'data:image/png' in html # QR omitted if no link
     assert 'qa_dashboard' not in str(report)
     assert '<script>alert(1)</script>' not in html

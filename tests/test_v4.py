@@ -188,7 +188,7 @@ def test_v4_build_includes_supplied_template_overlay_and_offline_vision_status(t
     assert r['packaging_template']['status']=='ready_for_provisional_overlay'
     assert (p/'build'/'packaging_ARTWORK_ONLY_PROVISIONAL.pdf').exists()
     assert (p/'build'/'packaging_SUPPLIER_LINES_REVIEW_ONLY.pdf').exists()
-    text=(p/'build'/'qa_dashboard.html').read_text()
+    text=(p/'build'/'qa_dashboard.html').read_text(encoding="utf-8")
     assert 'AI-assisted artwork review' in text
     assert 'Official box template' in text
     assert verify_package(z)['ok']
